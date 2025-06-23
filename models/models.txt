@@ -1,1 +1,7 @@
-models!
+Models ued:
+
+Linear Regression - https://github.com/MFHChehade/Solar-Irradiance-Forecasting-using-ANNs-from-Scratch/blob/main/Documentation/Report.pdf\
+
+ANN - https://github.com/MFHChehade/Solar-Irradiance-Forecasting-using-ANNs-from-Scratch/blob/main/Documentation/Report.pdf
+
+XGBoost- from scratch, tools used: 

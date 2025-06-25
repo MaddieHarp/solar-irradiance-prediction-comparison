@@ -233,7 +233,7 @@ class Net():
         A3 = self.relu(Z3)
         Z4 = A3.dot(self.params['W4']) + self.params['b4']
         pred = self.relu(Z4)
-        return np.round(pred) 
+        return pred
     
     def evaluate(self, x_test, y_test):
         preds = np.array(self.predict(x_test))

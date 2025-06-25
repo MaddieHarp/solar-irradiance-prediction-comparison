@@ -130,7 +130,7 @@ class LR():
         Predicts on a test data
         '''
         pred = X.dot(self.params['W1']) + self.params['b1']
-        return np.round(pred) 
+        return pred 
     
     def evaluate(self, x_test, y_test):
         preds = np.array(self.predict(x_test))

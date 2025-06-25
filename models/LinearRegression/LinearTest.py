@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
 #setting up data taken from csv file on solar irradance in Mayetta KS(pulls levels and weather factors)
 #skips first 14 because of how NASA Power Project Sets up their csv files when exporting
@@ -64,11 +64,22 @@ y_pred = lr.predict(X_test)
 print("Coefficients:", lr.coef_)
 print("Intercept:", lr.intercept_)
 
-#mean squared error
-print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
+# Calculate MAE
+mae = mean_absolute_error(y_test, y_pred)
+print(f"Mean Absolute Error (MAE): {mae:.4f}")
 
-#coefficient of determination: 1 is perfect prediction
-print("Coefficient of determination (R²): %.2f" % r2_score(y_test, y_pred))
+# Calculate MSE
+mse = mean_squared_error(y_test, y_pred)
+print(f"Mean Squared Error (MSE): {mse:.4f}")
+
+# Calculate RMSE (square root of MSE)
+rmse = np.sqrt(mse)
+print(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
+
+# Calculate R² (coefficient of determination)
+r2 = r2_score(y_test, y_pred)
+print(f"R-squared (R²): {r2:.4f}")
+
 
 # Plot actual vs predicted
 plt.plot(y_test[:100], label="Actual")
@@ -76,8 +87,6 @@ plt.plot(y_pred[:100], label="Predicted")
 plt.legend()
 plt.title("Linear Regression Predictions vs Actual")
 plt.show()
-
-
 
 ##CODE TO RUN LINEAR REGRESSION MODEL FROM https://github.com/MFHChehade/Solar-Irradiance-Forecasting-using-ANNs-from-Scratch/blob/main/Models/NeuralNetwork.py###
 

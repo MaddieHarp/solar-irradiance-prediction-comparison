@@ -6,6 +6,7 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPRegressor
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
 #setting up data taken from csv file on solar irradance in Mayetta KS(pulls levels and weather factors)
 #skips first 14 because of how NASA Power Project Sets up their csv files when exporting
@@ -59,6 +60,22 @@ predictions = mlp.predict(X_test)
 predictions = scaler_y.inverse_transform(predictions.reshape(-1, 1))
 y_test_unscaled = scaler_y.inverse_transform(y_test)
 
+# Calculate MAE
+mae = mean_absolute_error(y_test_unscaled, predictions)
+print(f"Mean Absolute Error (MAE): {mae:.4f}")
+
+# Calculate MSE
+mse = mean_squared_error(y_test_unscaled, predictions)
+print(f"Mean Squared Error (MSE): {mse:.4f}")
+
+# Calculate RMSE (square root of MSE)
+rmse = np.sqrt(mse)
+print(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
+
+# Calculate R² (coefficient of determination)
+r2 = r2_score(y_test_unscaled, predictions)
+print(f"R-squared (R²): {r2:.4f}")
+
 #plotting data
 plt.plot(y_test_unscaled[:100], label="Actual")
 plt.plot(predictions[:100], label="Predicted")
@@ -68,6 +85,7 @@ plt.show()
 
 print("Actual y_test range:", y_test_unscaled.min(), "to", y_test_unscaled.max())
 print("Predicted range:", predictions.min(), "to", predictions.max())
+
 
 ##CODE TO RUN LINEAR REGRESSION MODEL FROM https://github.com/MFHChehade/Solar-Irradiance-Forecasting-using-ANNs-from-Scratch/blob/main/Models/NeuralNetwork.py###
 

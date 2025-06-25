@@ -3,7 +3,7 @@
 #github from this model: https://github.com/MFHChehade/Solar-Irradiance-Forecasting-using-ANNs-from-Scratch/blob/main/Models/NeuralNetwork.py
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from LinearRegression import LR
+#for github model: from LinearRegression import LR
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import LinearRegression

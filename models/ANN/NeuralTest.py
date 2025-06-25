@@ -2,7 +2,7 @@
 #formatting and testing data of solar irradence for mayetta KS using Linear Regression model from Mohamad Fares El Hajj Chehade
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from NeuralNetwork import Net
+#for github model: from NeuralNetwork import Net
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPRegressor

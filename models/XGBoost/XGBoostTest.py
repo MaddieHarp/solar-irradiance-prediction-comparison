@@ -1,10 +1,11 @@
 #Harp 6/23/2025
 
-
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import numpy as np
+import xgboost as xgb
+from sklearn.metrics import mean_squared_error, r2_score
 
 #setting up data taken from csv file on solar irradance in Mayetta KS(pulls levels and weather factors)
 #skips first 14 because of how NASA Power Project Sets up their csv files when exporting
@@ -47,3 +48,25 @@ print(np.mean(X_scaled, axis=0))
 
 print("\nStandard deviation of each feature (should be close to 1):")
 print(np.std(X_scaled, axis=0))
+
+# X_train, X_test, y_train, y_test are already prepared and scaled
+
+# Create XGBoost regressor
+xgb_model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, learning_rate=0.1)
+
+# Train model
+xgb_model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = xgb_model.predict(X_test)
+
+# Evaluate
+print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
+print("R² score: %.2f" % r2_score(y_test, y_pred))
+
+# Plot actual vs predicted
+plt.plot(y_test[:100], label="Actual")
+plt.plot(y_pred[:100], label="Predicted")
+plt.legend()
+plt.title("XGBoost Predictions vs Actual")
+plt.show()

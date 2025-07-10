@@ -11,7 +11,7 @@ import time
 
 #setting up data taken from csv file on solar irradance in Mayetta KS(pulls levels and weather factors)
 #skips first 14 because of how NASA Power Project Sets up their csv files when exporting
-df = pd.read_csv("data/DailySolarData2000to2004pt2.csv", skiprows=14)
+df = pd.read_csv("data/DailySolarData2000to2024.csv", skiprows=14)
 print(df.columns.tolist())
 #pd.to_datetime expects year month and day, changing names to fit to_datetime
 df.rename(columns={'YEAR': 'year', 'MO': 'month', 'DY': 'day'}, inplace=True)
